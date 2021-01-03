@@ -1,11 +1,8 @@
 import "./App.css";
-import "firebase/database";
-import {
-  FirebaseAppProvider,
-  // eslint-disable-next-line
-  SuspenseWithPerf,
-} from "reactfire";
+import "firebase/auth";
+import { AuthCheck, FirebaseAppProvider } from "reactfire";
 import Burrito from "./Burrito";
+import Login from "./Login";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBLJ57nWDJKrYt-ACW2dhLzUbFSxCdwDv4",
@@ -20,7 +17,9 @@ const firebaseConfig = {
 function App() {
   return (
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-      <Burrito />
+      <AuthCheck fallback={<Login />}>
+        <Burrito />
+      </AuthCheck>
     </FirebaseAppProvider>
   );
 }

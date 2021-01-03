@@ -1,10 +1,5 @@
-import "firebase/database";
-import {
-  useFirestore,
-  useFirestoreDocData,
-  // eslint-disable-next-line
-  SuspenseWithPerf,
-} from "reactfire";
+import "firebase/firestore";
+import { useFirestore, useFirestoreDocData } from "reactfire";
 
 export default function Burrito() {
   // easily access the Firestore library
