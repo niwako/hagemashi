@@ -4,9 +4,9 @@ import {
   FirebaseAppProvider,
   useFirestore,
   useFirestoreDocData,
+  // eslint-disable-next-line
+  SuspenseWithPerf,
 } from "reactfire";
-// eslint-disable-next-line
-import { SuspenseWithPerf } from "reactfire";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBLJ57nWDJKrYt-ACW2dhLzUbFSxCdwDv4",
