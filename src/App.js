@@ -2,11 +2,10 @@ import "./App.css";
 import "firebase/database";
 import {
   FirebaseAppProvider,
-  useFirestore,
-  useFirestoreDocData,
   // eslint-disable-next-line
   SuspenseWithPerf,
 } from "reactfire";
+import Burrito from "./Burrito";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBLJ57nWDJKrYt-ACW2dhLzUbFSxCdwDv4",
@@ -18,25 +17,9 @@ const firebaseConfig = {
   measurementId: "G-B0DT0W1LW7",
 };
 
-function Burrito() {
-  // easily access the Firestore library
-  const burritoRef = useFirestore().collection("tryreactfire").doc("burrito");
-
-  // subscribe to a document for realtime updates. just one line!
-  const { status, data } = useFirestoreDocData(burritoRef);
-
-  // easily check the loading status
-  if (status === "loading") {
-    return <p>Fetching burrito flavor...</p>;
-  }
-
-  return <p>The burrito is {data.yummy ? "good" : "bad"}!</p>;
-}
-
 function App() {
   return (
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-      <h1>🌯</h1>
       <Burrito />
     </FirebaseAppProvider>
   );
