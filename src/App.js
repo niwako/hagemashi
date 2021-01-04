@@ -1,8 +1,7 @@
-import "./App.css";
 import "firebase/auth";
 import { AuthCheck, FirebaseAppProvider } from "reactfire";
-import Burrito from "./Burrito";
 import Login from "./Login";
+import AvatarHeader from "./AvatarHeader";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBLJ57nWDJKrYt-ACW2dhLzUbFSxCdwDv4",
@@ -18,7 +17,7 @@ function App() {
   return (
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
       <AuthCheck fallback={<Login />}>
-        <Burrito />
+        <AvatarHeader />
       </AuthCheck>
     </FirebaseAppProvider>
   );
