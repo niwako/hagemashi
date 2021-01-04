@@ -2,6 +2,13 @@ import "firebase/auth";
 import { AuthCheck, FirebaseAppProvider } from "reactfire";
 import Login from "./Login";
 import AvatarHeader from "./AvatarHeader";
+import {
+  createMuiTheme,
+  CssBaseline,
+  ThemeProvider,
+  useMediaQuery,
+} from "@material-ui/core";
+import { useMemo } from "react";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBLJ57nWDJKrYt-ACW2dhLzUbFSxCdwDv4",
@@ -14,12 +21,27 @@ const firebaseConfig = {
 };
 
 function App() {
+  const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+
+  const theme = useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          type: prefersDarkMode ? "dark" : "light",
+        },
+      }),
+    [prefersDarkMode]
+  );
+
   return (
-    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-      <AuthCheck fallback={<Login />}>
-        <AvatarHeader />
-      </AuthCheck>
-    </FirebaseAppProvider>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+        <AuthCheck fallback={<Login />}>
+          <AvatarHeader />
+        </AuthCheck>
+      </FirebaseAppProvider>
+    </ThemeProvider>
   );
 }
 
