@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { useMemo } from "react";
 import firebase from "firebase";
+import Entries from "./Entries";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBLJ57nWDJKrYt-ACW2dhLzUbFSxCdwDv4",
@@ -42,6 +43,7 @@ function App() {
       <FirebaseAppProvider firebaseConfig={firebaseConfig}>
         <AuthCheck fallback={<Login />}>
           <AvatarHeader />
+          <Entries />
         </AuthCheck>
       </FirebaseAppProvider>
     </ThemeProvider>
