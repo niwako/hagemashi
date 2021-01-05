@@ -8,8 +8,12 @@ export default function Entries() {
     .collection("entries")
     .orderBy("date", "desc")
     .limit(10);
-  const { data: entries } = useFirestoreCollectionData(entriesRef);
-  console.log(entries);
+  const { status, data: entries } = useFirestoreCollectionData(entriesRef);
+
+  // easily check the loading status
+  if (status === "loading") {
+    return <p>Fetching Hagemashi entries...</p>;
+  }
 
   return (
     <div>
