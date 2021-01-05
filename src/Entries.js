@@ -1,10 +1,12 @@
+import { List } from "@material-ui/core";
 import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
+import Entry from "./Entry";
 
 export default function Entries() {
   const { data: user } = useUser();
   const entriesRef = useFirestore()
     .collection("users")
-    .doc(user.email)
+    .doc(user.uid)
     .collection("entries")
     .orderBy("date", "desc")
     .limit(10);
@@ -16,10 +18,10 @@ export default function Entries() {
   }
 
   return (
-    <div>
+    <List>
       {entries.map((entry) => (
-        <div>{entry.entry}</div>
+        <Entry date={entry.date.toDate()} content={entry.content} />
       ))}
-    </div>
+    </List>
   );
 }

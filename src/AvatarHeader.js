@@ -1,4 +1,10 @@
-import { Avatar, Container, Grid } from "@material-ui/core";
+import {
+  Avatar,
+  List,
+  ListItem,
+  ListItemAvatar,
+  ListItemText,
+} from "@material-ui/core";
 import { useUser } from "reactfire";
 
 export default function AvatarHeader() {
@@ -6,18 +12,13 @@ export default function AvatarHeader() {
   const date = new Date().toDateString();
 
   return (
-    <Container>
-      <Grid container spacing={3}>
-        <Grid item xs>
-          <h1>
-            <Avatar alt={user.displayName} src={user.photoURL} />
-          </h1>
-        </Grid>
-        <Grid item xs={10}>
-          <h1>Hi {user.displayName.split(" ")[0]}</h1>
-          <div>{date}</div>
-        </Grid>
-      </Grid>
-    </Container>
+    <List>
+      <ListItem alignItems="flex-start">
+        <ListItemAvatar>
+          <Avatar alt={user.displayName} src={user.photoURL} />
+        </ListItemAvatar>
+        <ListItemText primary={"Hi " + user.displayName} secondary={date} />
+      </ListItem>
+    </List>
   );
 }
