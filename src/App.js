@@ -1,7 +1,6 @@
 import "firebase/auth";
 import { AuthCheck, FirebaseAppProvider } from "reactfire";
 import Login from "./Login";
-import AvatarHeader from "./AvatarHeader";
 import {
   createMuiTheme,
   CssBaseline,
@@ -10,7 +9,7 @@ import {
 } from "@material-ui/core";
 import { useMemo } from "react";
 import firebase from "firebase";
-import Entries from "./Entries";
+import Encouragements from "./Encouragements";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBLJ57nWDJKrYt-ACW2dhLzUbFSxCdwDv4",
@@ -42,8 +41,7 @@ function App() {
       <CssBaseline />
       <FirebaseAppProvider firebaseConfig={firebaseConfig}>
         <AuthCheck fallback={<Login />}>
-          <AvatarHeader />
-          <Entries />
+          <Encouragements />
         </AuthCheck>
       </FirebaseAppProvider>
     </ThemeProvider>
