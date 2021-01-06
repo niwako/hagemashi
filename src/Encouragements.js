@@ -2,6 +2,7 @@ import AddIcon from "@material-ui/icons/Add";
 import { Fab, makeStyles } from "@material-ui/core";
 import AvatarHeader from "./AvatarHeader";
 import Entries from "./Entries";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -17,7 +18,13 @@ export default function Encouragements() {
     <>
       <AvatarHeader />
       <Entries />
-      <Fab color="primary" aria-label="add" className={classes.fab}>
+      <Fab
+        color="primary"
+        aria-label="add"
+        className={classes.fab}
+        component={Link}
+        to="/editor"
+      >
         <AddIcon />
       </Fab>
     </>
