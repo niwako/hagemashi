@@ -10,7 +10,9 @@ export default function Entries() {
     .collection("entries")
     .orderBy("date", "desc")
     .limit(10);
-  const { status, data: entries } = useFirestoreCollectionData(entriesRef);
+  const { status, data: entries } = useFirestoreCollectionData(entriesRef, {
+    idField: "id",
+  });
 
   // easily check the loading status
   if (status === "loading") {
@@ -20,7 +22,11 @@ export default function Entries() {
   return (
     <List>
       {entries.map((entry) => (
-        <Entry date={entry.date.toDate()} content={entry.content} />
+        <Entry
+          key={entry.id}
+          date={entry.date.toDate()}
+          content={entry.content}
+        />
       ))}
     </List>
   );
