@@ -8,8 +8,7 @@ import {
   useMediaQuery,
 } from "@material-ui/core";
 import { useMemo } from "react";
-import firebase from "firebase";
-import Encouragements from "./Encouragements";
+import Routes from "./Routes";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBLJ57nWDJKrYt-ACW2dhLzUbFSxCdwDv4",
@@ -20,8 +19,6 @@ const firebaseConfig = {
   appId: "1:297349595147:web:5ec28f2f82cb009820c70e",
   measurementId: "G-B0DT0W1LW7",
 };
-
-firebase.initializeApp(firebaseConfig);
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -41,7 +38,7 @@ function App() {
       <CssBaseline />
       <FirebaseAppProvider firebaseConfig={firebaseConfig}>
         <AuthCheck fallback={<Login />}>
-          <Encouragements />
+          <Routes />
         </AuthCheck>
       </FirebaseAppProvider>
     </ThemeProvider>
