@@ -6,7 +6,7 @@ export default function Routes() {
   return (
     <Router>
       <Switch>
-        <Route path="/editor">
+        <Route path="/editor/:entryId">
           <Editor />
         </Route>
         <Route path="/">

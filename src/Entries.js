@@ -24,6 +24,7 @@ export default function Entries() {
       {entries.map((entry) => (
         <Entry
           key={entry.id}
+          id={entry.id}
           date={entry.date.toDate()}
           content={entry.content}
         />
