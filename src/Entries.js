@@ -1,4 +1,4 @@
-import { List } from "@material-ui/core";
+import { LinearProgress, List } from "@material-ui/core";
 import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
 import Entry from "./Entry";
 
@@ -16,7 +16,7 @@ export default function Entries() {
 
   // easily check the loading status
   if (status === "loading") {
-    return <p>Fetching Hagemashi entries...</p>;
+    return <LinearProgress />;
   }
 
   return (
