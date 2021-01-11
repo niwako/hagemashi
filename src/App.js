@@ -2,6 +2,7 @@ import "firebase/auth";
 import { AuthCheck, FirebaseAppProvider } from "reactfire";
 import Login from "./Login";
 import {
+  Container,
   createMuiTheme,
   CssBaseline,
   ThemeProvider,
@@ -37,9 +38,11 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-        <AuthCheck fallback={<Login />}>
-          <Routes />
-        </AuthCheck>
+        <Container maxWidth="sm">
+          <AuthCheck fallback={<Login />}>
+            <Routes />
+          </AuthCheck>
+        </Container>
       </FirebaseAppProvider>
     </ThemeProvider>
   );

@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Switch } from "react-router-dom";
-import Editor from "./Editor";
+import EntryEdit from "./EntryEdit";
 import Encouragements from "./Encouragements";
 
 export default function Routes() {
@@ -7,7 +7,7 @@ export default function Routes() {
     <Router>
       <Switch>
         <Route path="/editor/:entryId">
-          <Editor />
+          <EntryEdit />
         </Route>
         <Route path="/">
           <Encouragements />
