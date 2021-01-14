@@ -1,9 +1,4 @@
-import {
-  Container,
-  LinearProgress,
-  makeStyles,
-  TextField,
-} from "@material-ui/core";
+import { LinearProgress, makeStyles, TextField } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFirestore, useFirestoreDocData, useUser } from "reactfire";
