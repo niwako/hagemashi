@@ -38,7 +38,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-        <Container maxWidth="sm">
+        <Container disableGutters maxWidth="sm">
           <AuthCheck fallback={<Login />}>
             <Routes />
           </AuthCheck>

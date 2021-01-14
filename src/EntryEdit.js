@@ -1,4 +1,4 @@
-import { LinearProgress, makeStyles, TextField } from "@material-ui/core";
+import { Box, LinearProgress, makeStyles, TextField } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFirestore, useFirestoreDocData, useUser } from "reactfire";
@@ -44,7 +44,7 @@ export default function EntryEdit() {
   }
 
   return (
-    <>
+    <Box p={2}>
       <h1>Editor - {entryId}</h1>
       <TextField
         multiline
@@ -52,6 +52,6 @@ export default function EntryEdit() {
         value={content}
         onChange={updateContent}
       />
-    </>
+    </Box>
   );
 }

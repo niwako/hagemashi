@@ -9,7 +9,12 @@ import { useUser } from "reactfire";
 
 export default function AvatarHeader() {
   const { data: user } = useUser();
-  const date = new Date().toDateString();
+  const date = new Date().toLocaleDateString("en-US", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <List>
