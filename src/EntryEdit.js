@@ -2,6 +2,7 @@ import { LinearProgress, makeStyles, TextField } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFirestore, useFirestoreDocData, useUser } from "reactfire";
+import { useDebouncedCallback } from "use-debounce";
 
 const useStyles = makeStyles((theme) => ({
   textField: {
@@ -22,22 +23,20 @@ export default function EntryEdit() {
     idField: "id",
   });
 
-  const [editorState, setEditorState] = useState("");
+  const [content, setContent] = useState("");
 
   useEffect(() => {
-    setEditorState(entry?.content || "");
+    setContent(entry?.content || "");
   }, [entry]);
 
-  const updateEditorState = (event) => {
-    console.log(event);
-    entryRef.set(
-      {
-        content: event.target.value,
-      },
-      { merge: true }
-    );
-    setEditorState(event.target.value);
+  const updateContent = (event) => {
+    setContent(event.target.value);
+    updateFirestoreContent.callback(event.target.value);
   };
+
+  const updateFirestoreContent = useDebouncedCallback((content) => {
+    entryRef.set({ content }, { merge: true });
+  }, 1000);
 
   // easily check the loading status
   if (status === "loading") {
@@ -50,8 +49,8 @@ export default function EntryEdit() {
       <TextField
         multiline
         className={classes.textField}
-        value={editorState}
-        onChange={updateEditorState}
+        value={content}
+        onChange={updateContent}
       />
     </>
   );
