@@ -3,6 +3,7 @@ import { Fab, makeStyles } from "@material-ui/core";
 import AvatarHeader from "./AvatarHeader";
 import Entries from "./Entries";
 import { Link } from "react-router-dom";
+import { useFirestore, useUser } from "reactfire";
 
 const useStyles = makeStyles((theme) => ({
   fab: {
@@ -14,6 +15,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Encouragements() {
   const classes = useStyles();
+
+  const { data: user } = useUser();
+  const entryId = useFirestore()
+    .collection("users")
+    .doc(user.uid)
+    .collection("entries")
+    .doc().id;
+
   return (
     <>
       <AvatarHeader />
@@ -23,7 +32,7 @@ export default function Encouragements() {
         aria-label="add"
         className={classes.fab}
         component={Link}
-        to="/editor"
+        to={`/editor/${entryId}`}
       >
         <AddIcon />
       </Fab>

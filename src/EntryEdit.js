@@ -35,7 +35,11 @@ export default function EntryEdit() {
   };
 
   const updateFirestoreContent = useDebouncedCallback((content) => {
-    entryRef.set({ content }, { merge: true });
+    const payload = { content };
+    if (!entry?.date) {
+      payload.date = new Date();
+    }
+    entryRef.set(payload, { merge: true });
   }, 1000);
 
   // easily check the loading status
