@@ -1,4 +1,13 @@
-import { Box, LinearProgress, makeStyles, TextField } from "@material-ui/core";
+import DoneIcon from "@material-ui/icons/Done";
+import {
+  Box,
+  Fab,
+  Grid,
+  LinearProgress,
+  makeStyles,
+  TextField,
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFirestore, useFirestoreDocData, useUser } from "reactfire";
@@ -7,6 +16,10 @@ import { useDebouncedCallback } from "use-debounce";
 const useStyles = makeStyles((theme) => ({
   textField: {
     width: "100%",
+  },
+  fab: {
+    position: "absolute",
+    bottom: theme.spacing(2),
   },
 }));
 
@@ -49,13 +62,24 @@ export default function EntryEdit() {
 
   return (
     <Box p={2}>
-      <h1>Editor - {entryId}</h1>
       <TextField
         multiline
         className={classes.textField}
+        placeholder="What is your encouraging thought or event for today?"
         value={content}
         onChange={updateContent}
       />
+      <Grid container justify="flex-end">
+        <Fab
+          color="primary"
+          className={classes.fab}
+          aria-label="done"
+          component={Link}
+          to="/"
+        >
+          <DoneIcon />
+        </Fab>
+      </Grid>
     </Box>
   );
 }

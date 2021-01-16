@@ -1,5 +1,5 @@
 import AddIcon from "@material-ui/icons/Add";
-import { Fab, makeStyles } from "@material-ui/core";
+import { Box, Fab, Grid, makeStyles } from "@material-ui/core";
 import AvatarHeader from "./AvatarHeader";
 import Entries from "./Entries";
 import { Link } from "react-router-dom";
@@ -9,7 +9,6 @@ const useStyles = makeStyles((theme) => ({
   fab: {
     position: "absolute",
     bottom: theme.spacing(2),
-    right: theme.spacing(2),
   },
 }));
 
@@ -27,15 +26,19 @@ export default function Encouragements() {
     <>
       <AvatarHeader />
       <Entries />
-      <Fab
-        color="primary"
-        aria-label="add"
-        className={classes.fab}
-        component={Link}
-        to={`/editor/${entryId}`}
-      >
-        <AddIcon />
-      </Fab>
+      <Box pr={2}>
+        <Grid container justify="flex-end">
+          <Fab
+            color="primary"
+            aria-label="add"
+            className={classes.fab}
+            component={Link}
+            to={`/editor/${entryId}`}
+          >
+            <AddIcon />
+          </Fab>
+        </Grid>
+      </Box>
     </>
   );
 }
