@@ -5,6 +5,7 @@ import {
   Container,
   createMuiTheme,
   CssBaseline,
+  makeStyles,
   ThemeProvider,
   useMediaQuery,
 } from "@material-ui/core";
@@ -20,6 +21,30 @@ const firebaseConfig = {
   appId: "1:297349595147:web:5ec28f2f82cb009820c70e",
   measurementId: "G-B0DT0W1LW7",
 };
+
+const useStyles = makeStyles((theme) => ({
+  "@global": {
+    body: {
+      backgroundColor: theme.palette.background.paper,
+    },
+  },
+  container: {
+    height: "100vh",
+    backgroundColor: theme.palette.background.default,
+  },
+}));
+
+function Main() {
+  const classes = useStyles();
+
+  return (
+    <Container disableGutters className={classes.container} maxWidth="sm">
+      <AuthCheck fallback={<Login />}>
+        <Routes />
+      </AuthCheck>
+    </Container>
+  );
+}
 
 function App() {
   const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
@@ -38,11 +63,7 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <FirebaseAppProvider firebaseConfig={firebaseConfig}>
-        <Container disableGutters maxWidth="sm">
-          <AuthCheck fallback={<Login />}>
-            <Routes />
-          </AuthCheck>
-        </Container>
+        <Main />
       </FirebaseAppProvider>
     </ThemeProvider>
   );
