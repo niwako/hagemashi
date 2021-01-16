@@ -6,7 +6,7 @@ export default function Entry({ id, date, content }) {
     <>
       <ListItem button component={Link} to={`/editor/${id}`}>
         <ListItemText
-          primary={
+          secondary={
             date.toLocaleDateString("en-US", {
               weekday: "long",
               year: "numeric",
@@ -16,8 +16,9 @@ export default function Entry({ id, date, content }) {
             " • " +
             date.toLocaleTimeString()
           }
-          secondary={content}
-        />
+        >
+          {content}
+        </ListItemText>
       </ListItem>
       <Divider variant="middle" component="li" />
     </>
