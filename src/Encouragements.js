@@ -1,13 +1,13 @@
 import AddIcon from "@material-ui/icons/Add";
-import { Box, Fab, Grid, makeStyles } from "@material-ui/core";
+import { Box, Container, Fab, Grid, makeStyles } from "@material-ui/core";
 import AvatarHeader from "./AvatarHeader";
 import Entries from "./Entries";
 import { Link } from "react-router-dom";
 import { useFirestore, useUser } from "reactfire";
 
 const useStyles = makeStyles((theme) => ({
-  fab: {
-    position: "absolute",
+  container: {
+    position: "fixed",
     bottom: theme.spacing(2),
   },
 }));
@@ -26,19 +26,20 @@ export default function Encouragements() {
     <>
       <AvatarHeader />
       <Entries />
-      <Box pr={2}>
-        <Grid container justify="flex-end">
-          <Fab
-            color="primary"
-            aria-label="add"
-            className={classes.fab}
-            component={Link}
-            to={`/editor/${entryId}`}
-          >
-            <AddIcon />
-          </Fab>
-        </Grid>
-      </Box>
+      <Container disableGutters className={classes.container} maxWidth="sm">
+        <Box ml={2} mr={2}>
+          <Grid container justify="flex-end">
+            <Fab
+              color="primary"
+              aria-label="add"
+              component={Link}
+              to={`/editor/${entryId}`}
+            >
+              <AddIcon />
+            </Fab>
+          </Grid>
+        </Box>
+      </Container>
     </>
   );
 }
